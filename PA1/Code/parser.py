@@ -8,6 +8,11 @@ s_word_bool = [dict() for i in range(10)]
 list_of_files = [dict() for i in range(10)]
 path = '../Data/'
 
+def get_vocab():
+    entire_vocab = Set()
+    for i in range(10): entire_vocab |= Set(ns_word_bool[i].keys()) | Set(s_word_bool[i].keys())
+    return entire_vocab
+
 def get_all_files():
     global list_of_files, path
     for (dirpath, dirnames, filenames) in os.walk(path):
@@ -18,7 +23,7 @@ def get_all_files():
 
 def add_to_dict(main_dict, lst, fold):
     for e in lst:
-        if main_dict[fold].has_key(e): main_dict[fold][e] += 1
+        if e in main_dict[fold]: main_dict[fold][e] += 1
         else: main_dict[fold][e] = 1
     return
 

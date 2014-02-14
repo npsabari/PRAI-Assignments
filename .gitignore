@@ -1,5 +1,8 @@
 # Python files
 *.pyc
+*.arff
+arff/
+weka-results/
 
 # Directories #
 /build/

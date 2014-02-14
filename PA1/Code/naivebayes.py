@@ -45,10 +45,8 @@ def update_local_params(fold, ns=True, count=True):
         if count: main_dict, tmp_dict = local_s_word_count, parser.s_word_count[fold]
         else: main_dict, tmp_dict = local_s_word_bool, parser.s_word_bool[fold]
     for node in tmp_dict:
-        if main_dict.has_key(node):
-            main_dict[node] += tmp_dict[node]
-        else:
-            main_dict[node] = tmp_dict[node]
+        if node in main_dict: main_dict[node] += tmp_dict[node]
+        else: main_dict[node] = tmp_dict[node]
     return
 
 def get_vocab_words(strt, Bernoulli=False):
@@ -76,7 +74,6 @@ def get_vocab_words(strt, Bernoulli=False):
         else:
             update_local_params(idx, True, False)
             update_local_params(idx, False, False)
-
     if not Bernoulli:
         vocab = Set(local_s_word_count.keys()) | Set(local_ns_word_count.keys())
         for token in local_ns_word_count: local_ns_size += local_ns_word_count[token]
@@ -93,7 +90,7 @@ def multinomial():
     # Crazy Initializations
     true_p = [0 for i in range(5)]
     false_p, true_n, false_n = list(true_p), list(true_p), list(true_p)
-    precision, recall, fmeasure = list(true_p), list(true_p), list(true_p)
+    precision, recall, fmeasure, accuracy = list(true_p), list(true_p), list(true_p), list(true_p)
     for strt in range(0, 10, 2):
         get_vocab_words(strt)
         # 5-fold => 2 files are used for testing
@@ -116,14 +113,14 @@ def multinomial():
                 # Adding MAP log probabilities
                 for token in tokens:
                     t = 0
-                    if local_ns_word_count.has_key(token): t = local_ns_word_count[token]
+                    if token in local_ns_word_count: t = local_ns_word_count[token]
                     log_prob_ns += math.log((t+1.)/(local_ns_size+vocab_size))
                     t = 0
-                    if local_s_word_count.has_key(token): t = local_s_word_count[token]
+                    if token in local_s_word_count: t = local_s_word_count[token]
                     log_prob_s += math.log((t+1.)/(local_s_size+vocab_size))
                 #print 'log_ns %f, log_s %f' % (log_prob_ns, log_prob_s)
                 # Classified as spam
-                if log_prob_ns < log_prob_s:
+                if log_prob_ns <= log_prob_s:
                     if ns: false_p[strt>>1] += 1
                     else: true_p[strt>>1] += 1
                 # Classified as non-spam
@@ -135,10 +132,13 @@ def multinomial():
         precision[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_p[strt>>1])
         recall[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_n[strt>>1])
         fmeasure[strt>>1] = (precision[strt>>1]*recall[strt>>1])/(precision[strt>>1]+recall[strt>>1])*2.0
+        accuracy[strt>>1] = (true_p[strt>>1]+true_n[strt>>1])*1./ \
+                (true_p[strt>>1]+true_n[strt>>1]+false_p[strt>>1]+false_n[strt>>1])
 
     # Printing the calculated values
     for i in range(len(precision)):
-        print 'precision %f, recall %f, fmeasure %f' % (precision[i], recall[i], fmeasure[i])
+        print 'accuracy %f, precision %f, recall %f, fmeasure %f' \
+        % (accuracy[i], precision[i], recall[i], fmeasure[i])
 
 def bernoulli():
     global vocab_size, docs_ns_size, docs_s_size
@@ -146,7 +146,7 @@ def bernoulli():
     # Crazy Initializations
     true_p = [0 for i in range(5)]
     false_p, true_n, false_n = list(true_p), list(true_p), list(true_p)
-    precision, recall, fmeasure = list(true_p), list(true_p), list(true_p)
+    precision, recall, fmeasure, accuracy = list(true_p), list(true_p), list(true_p), list(true_p)
     for strt in range(0, 10, 2):
         get_vocab_words(strt, True)
         # 5-fold => 2 files are used for testing
@@ -170,18 +170,18 @@ def bernoulli():
                 for token in vocab:
                     present = token in tokens
                     t = 0
-                    if local_ns_word_bool.has_key(token): t = local_ns_word_bool[token]
+                    if token in local_ns_word_bool: t = local_ns_word_bool[token]
                     val = (t+1.)/(docs_ns_size+2)
                     if present: log_prob_ns += math.log(val)
                     else: log_prob_ns += math.log(1.-val)
                     t = 0
-                    if local_s_word_bool.has_key(token): t = local_s_word_bool[token]
+                    if token in local_s_word_bool: t = local_s_word_bool[token]
                     val = (t+1.)/(docs_s_size+2)
                     if present: log_prob_s += math.log(val)
                     else: log_prob_s += math.log(1.-val)
                 #print 'log_ns %f, log_s %f' % (log_prob_ns, log_prob_s)
                 # Classified as spam
-                if log_prob_ns < log_prob_s:
+                if log_prob_ns <= log_prob_s:
                     if ns: false_p[strt>>1] += 1
                     else: true_p[strt>>1] += 1
                 # Classified as non-spam
@@ -193,7 +193,10 @@ def bernoulli():
         precision[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_p[strt>>1])
         recall[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_n[strt>>1])
         fmeasure[strt>>1] = (precision[strt>>1]*recall[strt>>1])/(precision[strt>>1]+recall[strt>>1])*2.0
+        accuracy[strt>>1] = (true_p[strt>>1]+true_n[strt>>1])*1./ \
+                (true_p[strt>>1]+true_n[strt>>1]+false_p[strt>>1]+false_n[strt>>1])
 
     # Printing the calculated values
     for i in range(len(precision)):
-        print 'precision %f, recall %f, fmeasure %f' % (precision[i], recall[i], fmeasure[i])
+        print 'accuracy %f, precision %f, recall %f, fmeasure %f' \
+        % (accuracy[i], precision[i], recall[i], fmeasure[i])
