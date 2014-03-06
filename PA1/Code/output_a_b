@@ -1,0 +1,12 @@
+Multinomial likelihood
+accuracy 0.968326, precision 0.950000, recall 0.979381, fmeasure 0.964467
+accuracy 0.981735, precision 0.969388, recall 0.989583, fmeasure 0.979381
+accuracy 0.954545, precision 0.930000, recall 0.968750, fmeasure 0.948980
+accuracy 0.958904, precision 0.957895, recall 0.947917, fmeasure 0.952880
+accuracy 0.968182, precision 0.949495, recall 0.979167, fmeasure 0.964103
+Bernoulli likelihood
+accuracy 0.900452, precision 0.987013, recall 0.783505, fmeasure 0.873563
+accuracy 0.940639, precision 0.988235, recall 0.875000, fmeasure 0.928177
+accuracy 0.940909, precision 1.000000, recall 0.864583, fmeasure 0.927374
+accuracy 0.899543, precision 0.986842, recall 0.781250, fmeasure 0.872093
+accuracy 0.940909, precision 0.977011, recall 0.885417, fmeasure 0.928962

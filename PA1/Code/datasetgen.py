@@ -1,6 +1,6 @@
 import parser
 from sets import Set
-from naivebayes import get_files
+from mle import get_files
 
 vocab = list()
 vocab_size = 0

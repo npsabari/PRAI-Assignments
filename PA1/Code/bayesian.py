@@ -4,7 +4,7 @@ import math
 from sets import Set
 
 # For likelihood
-# For Multinomial
+# For Dirichlet
 vocab_size = 0
 vocab = Set()
 local_ns_word_count = dict()
@@ -12,7 +12,7 @@ local_s_word_count = dict()
 local_ns_size = 0
 local_s_size = 0
 
-# For Bernoulli
+# For Beta
 local_ns_word_bool = dict()
 local_s_word_bool = dict()
 
@@ -66,14 +66,10 @@ def get_vocab_words(strt, Bernoulli=False):
         cnt += 1
         # Computing prior probabilities ( Redundant iteration on the files )
         update_doc_size(parser.path+'part'+str(idx)+'/')
-        # Computing the likelihood for Multinomial
-        if not Bernoulli:
-            update_local_params(idx, True, True)
-            update_local_params(idx, False, True)
-        # Computing likelihood for Bernoulli
-        else:
-            update_local_params(idx, True, False)
-            update_local_params(idx, False, False)
+        # Computing the likelihood for Multinomial/Bernoulli
+        update_local_params(idx, True, not Bernoulli)
+        update_local_params(idx, False, not Bernoulli)
+
     if not Bernoulli:
         vocab = Set(local_s_word_count.keys()) | Set(local_ns_word_count.keys())
         for token in local_ns_word_count: local_ns_size += local_ns_word_count[token]
@@ -81,12 +77,14 @@ def get_vocab_words(strt, Bernoulli=False):
     else:
         vocab = Set(local_ns_word_bool.keys()) | Set(local_s_word_bool.keys())
     vocab_size = len(vocab)
-    print 'Size '+str(vocab_size)
+    #print 'Size '+str(vocab_size)
     return
 
-def multinomial():
+def simulate_dirichlet(prior_alpha, prior_beta, like_alpha, like_beta):
     global vocab_size, local_ns_size, local_s_size
     global local_ns_word_count, local_s_word_count, docs_ns_size, docs_s_size
+    print 'For prior_alpha = %d, prior_beta = %d, like_alpha = %d, like_beta = %d' % \
+            (prior_alpha, prior_beta, like_alpha, like_beta)
     # Crazy Initializations
     true_p = [0 for i in range(5)]
     false_p, true_n, false_n = list(true_p), list(true_p), list(true_p)
@@ -103,8 +101,10 @@ def multinomial():
             # Testing phase
             for filename in files:
                 tokens = list()
-                log_prob_ns = math.log(docs_ns_size*1./(docs_ns_size+docs_s_size))
-                log_prob_s = math.log(docs_s_size*1./(docs_ns_size+docs_s_size))
+                log_prob_ns = math.log((docs_ns_size+prior_beta)*1.0/ \
+                        (docs_ns_size+docs_s_size+prior_alpha+prior_beta))
+                log_prob_s = math.log((docs_s_size+prior_alpha)*1.0/ \
+                        (docs_ns_size+docs_s_size+prior_alpha+prior_beta))
                 ns = 'legit' in filename
                 # Accumulating all the tokens in a list (not in a set)
                 with open(files[filename], 'r') as infile:
@@ -114,13 +114,13 @@ def multinomial():
                 for token in tokens:
                     t = 0
                     if token in local_ns_word_count: t = local_ns_word_count[token]
-                    log_prob_ns += math.log((t+1.)/(local_ns_size+vocab_size))
+                    log_prob_ns += math.log((t+like_beta)*1.0/(local_ns_size+like_alpha+like_beta))
                     t = 0
                     if token in local_s_word_count: t = local_s_word_count[token]
-                    log_prob_s += math.log((t+1.)/(local_s_size+vocab_size))
+                    log_prob_s += math.log((t+like_alpha)*1.0/(local_s_size+like_alpha+like_beta))
                 #print 'log_ns %f, log_s %f' % (log_prob_ns, log_prob_s)
                 # Classified as spam
-                if log_prob_ns <= log_prob_s:
+                if log_prob_ns < log_prob_s:
                     if ns: false_p[strt>>1] += 1
                     else: true_p[strt>>1] += 1
                 # Classified as non-spam
@@ -128,21 +128,50 @@ def multinomial():
                     if ns: true_n[strt>>1] += 1
                     else: false_n[strt>>1] += 1
 
-        # Calculating precision, recall and f-measure
-        precision[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_p[strt>>1])
-        recall[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_n[strt>>1])
-        fmeasure[strt>>1] = (precision[strt>>1]*recall[strt>>1])/(precision[strt>>1]+recall[strt>>1])*2.0
-        accuracy[strt>>1] = (true_p[strt>>1]+true_n[strt>>1])*1./ \
-                (true_p[strt>>1]+true_n[strt>>1]+false_p[strt>>1]+false_n[strt>>1])
+        # Calculating precision, recall and f-measure ( Annoying try/except! )
+        try:
+            precision[strt>>1] = (true_p[strt>>1]*1.0)/(true_p[strt>>1] + false_p[strt>>1])
+        except ZeroDivisionError:
+            precision[strt>>1] = float('nan')
+        try:
+            recall[strt>>1] = (true_p[strt>>1]*1.0)/(true_p[strt>>1] + false_n[strt>>1])
+        except ZeroDivisionError:
+            recall[strt>>1] = float('nan')
+        try:
+            fmeasure[strt>>1] = (precision[strt>>1]*recall[strt>>1])/(precision[strt>>1]+recall[strt>>1])*2.0
+        except ZeroDivisionError:
+            fmeasure[strt>>1] = float('nan')
+        try:
+            accuracy[strt>>1] = (true_p[strt>>1]+true_n[strt>>1])*1./ \
+                    (true_p[strt>>1]+true_n[strt>>1]+false_p[strt>>1]+false_n[strt>>1])
+        except ZeroDivisionError:
+            accuracy[strt>>1] = float('nan')
 
     # Printing the calculated values
     for i in range(len(precision)):
         print 'accuracy %f, precision %f, recall %f, fmeasure %f' \
         % (accuracy[i], precision[i], recall[i], fmeasure[i])
 
-def bernoulli():
+    return
+
+def dirichlet():
+    print 'Dirichlet Prior'
+    prior_alpha_list = [1, 10, 100]
+    prior_beta_list = [10]
+    like_alpha_list = [1, 5, 25]
+    like_beta_list = [5]
+    for prior_alpha in prior_alpha_list:
+        for prior_beta in prior_beta_list:
+            for like_alpha in like_alpha_list:
+                for like_beta in like_beta_list:
+                    simulate_dirichlet(prior_alpha, prior_beta, like_alpha, like_beta)
+    return
+
+def simulate_beta(prior_alpha, prior_beta, like_alpha, like_beta):
     global vocab_size, docs_ns_size, docs_s_size
     global local_ns_word_bool, local_s_word_bool, vocab
+    print 'For prior_alpha = %d, prior_beta = %d, like_alpha = %d, like_beta = %d' % \
+            (prior_alpha, prior_beta, like_alpha, like_beta)
     # Crazy Initializations
     true_p = [0 for i in range(5)]
     false_p, true_n, false_n = list(true_p), list(true_p), list(true_p)
@@ -159,8 +188,10 @@ def bernoulli():
             # Testing phase
             for filename in files:
                 tokens = Set()
-                log_prob_ns = math.log(docs_ns_size*1./(docs_ns_size+docs_s_size))
-                log_prob_s = math.log(docs_s_size*1./(docs_ns_size+docs_s_size))
+                log_prob_ns = math.log((docs_ns_size+prior_beta)*1.0/ \
+                        (docs_ns_size+docs_s_size+prior_alpha+prior_beta))
+                log_prob_s = math.log((docs_s_size+prior_alpha)*1.0/ \
+                        (docs_ns_size+docs_s_size+prior_alpha+prior_beta))
                 ns = 'legit' in filename
                 # Accumulating all the tokens in a list (not in a set)
                 with open(files[filename], 'r') as infile:
@@ -171,17 +202,17 @@ def bernoulli():
                     present = token in tokens
                     t = 0
                     if token in local_ns_word_bool: t = local_ns_word_bool[token]
-                    val = (t+1.)/(docs_ns_size+2)
+                    val = (t+like_beta)*1.0/(docs_ns_size+like_alpha+like_beta)
                     if present: log_prob_ns += math.log(val)
-                    else: log_prob_ns += math.log(1.-val)
+                    else: log_prob_ns += math.log(1.0-val)
                     t = 0
                     if token in local_s_word_bool: t = local_s_word_bool[token]
-                    val = (t+1.)/(docs_s_size+2)
+                    val = (t+like_alpha)*1.0/(docs_s_size+like_alpha+like_beta)
                     if present: log_prob_s += math.log(val)
-                    else: log_prob_s += math.log(1.-val)
+                    else: log_prob_s += math.log(1.0-val)
                 #print 'log_ns %f, log_s %f' % (log_prob_ns, log_prob_s)
                 # Classified as spam
-                if log_prob_ns <= log_prob_s:
+                if log_prob_ns < log_prob_s:
                     if ns: false_p[strt>>1] += 1
                     else: true_p[strt>>1] += 1
                 # Classified as non-spam
@@ -189,14 +220,41 @@ def bernoulli():
                     if ns: true_n[strt>>1] += 1
                     else: false_n[strt>>1] += 1
 
-        # Calculating precision, recall and f-measure
-        precision[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_p[strt>>1])
-        recall[strt>>1] = (true_p[strt>>1]*1.)/(true_p[strt>>1] + false_n[strt>>1])
-        fmeasure[strt>>1] = (precision[strt>>1]*recall[strt>>1])/(precision[strt>>1]+recall[strt>>1])*2.0
-        accuracy[strt>>1] = (true_p[strt>>1]+true_n[strt>>1])*1./ \
-                (true_p[strt>>1]+true_n[strt>>1]+false_p[strt>>1]+false_n[strt>>1])
+        # Calculating precision, recall and f-measure ( Annoying try/except! )
+        try:
+            precision[strt>>1] = (true_p[strt>>1]*1.0)/(true_p[strt>>1] + false_p[strt>>1])
+        except ZeroDivisionError:
+            precision[strt>>1] = float('nan')
+        try:
+            recall[strt>>1] = (true_p[strt>>1]*1.0)/(true_p[strt>>1] + false_n[strt>>1])
+        except ZeroDivisionError:
+            recall[strt>>1] = float('nan')
+        try:
+            fmeasure[strt>>1] = (precision[strt>>1]*recall[strt>>1])/(precision[strt>>1]+recall[strt>>1])*2.0
+        except ZeroDivisionError:
+            fmeasure[strt>>1] = float('nan')
+        try:
+            accuracy[strt>>1] = (true_p[strt>>1]+true_n[strt>>1])*1./ \
+                    (true_p[strt>>1]+true_n[strt>>1]+false_p[strt>>1]+false_n[strt>>1])
+        except ZeroDivisionError:
+            accuracy[strt>>1] = float('nan')
 
     # Printing the calculated values
     for i in range(len(precision)):
         print 'accuracy %f, precision %f, recall %f, fmeasure %f' \
         % (accuracy[i], precision[i], recall[i], fmeasure[i])
+
+    return
+
+def beta():
+    print 'Beta Prior'
+    prior_alpha_list = [1, 10, 100]
+    prior_beta_list = [10]
+    like_alpha_list = [1, 5, 25]
+    like_beta_list = [5]
+    for prior_alpha in prior_alpha_list:
+        for prior_beta in prior_beta_list:
+            for like_alpha in like_alpha_list:
+                for like_beta in like_beta_list:
+                    simulate_beta(prior_alpha, prior_beta, like_alpha, like_beta)
+    return

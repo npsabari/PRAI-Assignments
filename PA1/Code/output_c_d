@@ -1,0 +1,110 @@
+Dirichlet Prior
+For prior_alpha = 1, prior_beta = 10, like_alpha = 1, like_beta = 5
+accuracy 0.927602, precision 0.955056, recall 0.876289, fmeasure 0.913978
+accuracy 0.968037, precision 0.989011, recall 0.937500, fmeasure 0.962567
+accuracy 0.936364, precision 0.976744, recall 0.875000, fmeasure 0.923077
+accuracy 0.890411, precision 0.986486, recall 0.760417, fmeasure 0.858824
+accuracy 0.936364, precision 1.000000, recall 0.854167, fmeasure 0.921348
+For prior_alpha = 1, prior_beta = 10, like_alpha = 5, like_beta = 5
+accuracy 0.959276, precision 0.931373, recall 0.979381, fmeasure 0.954774
+accuracy 0.968037, precision 0.940594, recall 0.989583, fmeasure 0.964467
+accuracy 0.936364, precision 0.894231, recall 0.968750, fmeasure 0.930000
+accuracy 0.922374, precision 0.915789, recall 0.906250, fmeasure 0.910995
+accuracy 0.940909, precision 0.902913, recall 0.968750, fmeasure 0.934673
+For prior_alpha = 1, prior_beta = 10, like_alpha = 25, like_beta = 5
+accuracy 0.714932, precision 0.608974, recall 0.979381, fmeasure 0.750988
+accuracy 0.721461, precision 0.611465, recall 1.000000, fmeasure 0.758893
+accuracy 0.713636, precision 0.603774, recall 1.000000, fmeasure 0.752941
+accuracy 0.716895, precision 0.607595, recall 1.000000, fmeasure 0.755906
+accuracy 0.763636, precision 0.650685, recall 0.989583, fmeasure 0.785124
+For prior_alpha = 10, prior_beta = 10, like_alpha = 1, like_beta = 5
+accuracy 0.927602, precision 0.955056, recall 0.876289, fmeasure 0.913978
+accuracy 0.968037, precision 0.989011, recall 0.937500, fmeasure 0.962567
+accuracy 0.936364, precision 0.976744, recall 0.875000, fmeasure 0.923077
+accuracy 0.890411, precision 0.986486, recall 0.760417, fmeasure 0.858824
+accuracy 0.936364, precision 1.000000, recall 0.854167, fmeasure 0.921348
+For prior_alpha = 10, prior_beta = 10, like_alpha = 5, like_beta = 5
+accuracy 0.959276, precision 0.931373, recall 0.979381, fmeasure 0.954774
+accuracy 0.968037, precision 0.940594, recall 0.989583, fmeasure 0.964467
+accuracy 0.936364, precision 0.894231, recall 0.968750, fmeasure 0.930000
+accuracy 0.922374, precision 0.915789, recall 0.906250, fmeasure 0.910995
+accuracy 0.940909, precision 0.902913, recall 0.968750, fmeasure 0.934673
+For prior_alpha = 10, prior_beta = 10, like_alpha = 25, like_beta = 5
+accuracy 0.714932, precision 0.608974, recall 0.979381, fmeasure 0.750988
+accuracy 0.721461, precision 0.611465, recall 1.000000, fmeasure 0.758893
+accuracy 0.713636, precision 0.603774, recall 1.000000, fmeasure 0.752941
+accuracy 0.716895, precision 0.607595, recall 1.000000, fmeasure 0.755906
+accuracy 0.763636, precision 0.650685, recall 0.989583, fmeasure 0.785124
+For prior_alpha = 100, prior_beta = 10, like_alpha = 1, like_beta = 5
+accuracy 0.927602, precision 0.955056, recall 0.876289, fmeasure 0.913978
+accuracy 0.968037, precision 0.989011, recall 0.937500, fmeasure 0.962567
+accuracy 0.940909, precision 0.977011, recall 0.885417, fmeasure 0.928962
+accuracy 0.890411, precision 0.986486, recall 0.760417, fmeasure 0.858824
+accuracy 0.936364, precision 1.000000, recall 0.854167, fmeasure 0.921348
+For prior_alpha = 100, prior_beta = 10, like_alpha = 5, like_beta = 5
+accuracy 0.959276, precision 0.931373, recall 0.979381, fmeasure 0.954774
+accuracy 0.963470, precision 0.931373, recall 0.989583, fmeasure 0.959596
+accuracy 0.931818, precision 0.885714, recall 0.968750, fmeasure 0.925373
+accuracy 0.922374, precision 0.915789, recall 0.906250, fmeasure 0.910995
+accuracy 0.940909, precision 0.902913, recall 0.968750, fmeasure 0.934673
+For prior_alpha = 100, prior_beta = 10, like_alpha = 25, like_beta = 5
+accuracy 0.705882, precision 0.601266, recall 0.979381, fmeasure 0.745098
+accuracy 0.721461, precision 0.611465, recall 1.000000, fmeasure 0.758893
+accuracy 0.713636, precision 0.603774, recall 1.000000, fmeasure 0.752941
+accuracy 0.712329, precision 0.603774, recall 1.000000, fmeasure 0.752941
+accuracy 0.763636, precision 0.650685, recall 0.989583, fmeasure 0.785124
+Beta Prior
+For prior_alpha = 1, prior_beta = 10, like_alpha = 1, like_beta = 5
+accuracy 0.656109, precision 0.560694, recall 1.000000, fmeasure 0.718519
+accuracy 0.657534, precision 0.561404, recall 1.000000, fmeasure 0.719101
+accuracy 0.627273, precision 0.539326, recall 1.000000, fmeasure 0.700730
+accuracy 0.694064, precision 0.588957, recall 1.000000, fmeasure 0.741313
+accuracy 0.659091, precision 0.561404, recall 1.000000, fmeasure 0.719101
+For prior_alpha = 1, prior_beta = 10, like_alpha = 5, like_beta = 5
+accuracy 0.742081, precision 1.000000, recall 0.412371, fmeasure 0.583942
+accuracy 0.789954, precision 1.000000, recall 0.520833, fmeasure 0.684932
+accuracy 0.781818, precision 1.000000, recall 0.500000, fmeasure 0.666667
+accuracy 0.744292, precision 1.000000, recall 0.416667, fmeasure 0.588235
+accuracy 0.790909, precision 0.962963, recall 0.541667, fmeasure 0.693333
+For prior_alpha = 1, prior_beta = 10, like_alpha = 25, like_beta = 5
+accuracy 0.574661, precision 1.000000, recall 0.030928, fmeasure 0.060000
+accuracy 0.566210, precision 0.666667, recall 0.020833, fmeasure 0.040404
+accuracy 0.563636, precision nan, recall 0.000000, fmeasure nan
+accuracy 0.566210, precision 1.000000, recall 0.010417, fmeasure 0.020619
+accuracy 0.572727, precision 1.000000, recall 0.020833, fmeasure 0.040816
+For prior_alpha = 10, prior_beta = 10, like_alpha = 1, like_beta = 5
+accuracy 0.656109, precision 0.560694, recall 1.000000, fmeasure 0.718519
+accuracy 0.657534, precision 0.561404, recall 1.000000, fmeasure 0.719101
+accuracy 0.627273, precision 0.539326, recall 1.000000, fmeasure 0.700730
+accuracy 0.694064, precision 0.588957, recall 1.000000, fmeasure 0.741313
+accuracy 0.659091, precision 0.561404, recall 1.000000, fmeasure 0.719101
+For prior_alpha = 10, prior_beta = 10, like_alpha = 5, like_beta = 5
+accuracy 0.742081, precision 1.000000, recall 0.412371, fmeasure 0.583942
+accuracy 0.789954, precision 1.000000, recall 0.520833, fmeasure 0.684932
+accuracy 0.781818, precision 1.000000, recall 0.500000, fmeasure 0.666667
+accuracy 0.744292, precision 1.000000, recall 0.416667, fmeasure 0.588235
+accuracy 0.790909, precision 0.962963, recall 0.541667, fmeasure 0.693333
+For prior_alpha = 10, prior_beta = 10, like_alpha = 25, like_beta = 5
+accuracy 0.574661, precision 1.000000, recall 0.030928, fmeasure 0.060000
+accuracy 0.566210, precision 0.666667, recall 0.020833, fmeasure 0.040404
+accuracy 0.563636, precision nan, recall 0.000000, fmeasure nan
+accuracy 0.566210, precision 1.000000, recall 0.010417, fmeasure 0.020619
+accuracy 0.572727, precision 1.000000, recall 0.020833, fmeasure 0.040816
+For prior_alpha = 100, prior_beta = 10, like_alpha = 1, like_beta = 5
+accuracy 0.656109, precision 0.560694, recall 1.000000, fmeasure 0.718519
+accuracy 0.652968, precision 0.558140, recall 1.000000, fmeasure 0.716418
+accuracy 0.627273, precision 0.539326, recall 1.000000, fmeasure 0.700730
+accuracy 0.694064, precision 0.588957, recall 1.000000, fmeasure 0.741313
+accuracy 0.659091, precision 0.561404, recall 1.000000, fmeasure 0.719101
+For prior_alpha = 100, prior_beta = 10, like_alpha = 5, like_beta = 5
+accuracy 0.742081, precision 1.000000, recall 0.412371, fmeasure 0.583942
+accuracy 0.789954, precision 1.000000, recall 0.520833, fmeasure 0.684932
+accuracy 0.781818, precision 1.000000, recall 0.500000, fmeasure 0.666667
+accuracy 0.744292, precision 1.000000, recall 0.416667, fmeasure 0.588235
+accuracy 0.790909, precision 0.962963, recall 0.541667, fmeasure 0.693333
+For prior_alpha = 100, prior_beta = 10, like_alpha = 25, like_beta = 5
+accuracy 0.574661, precision 1.000000, recall 0.030928, fmeasure 0.060000
+accuracy 0.566210, precision 0.666667, recall 0.020833, fmeasure 0.040404
+accuracy 0.563636, precision nan, recall 0.000000, fmeasure nan
+accuracy 0.566210, precision 1.000000, recall 0.010417, fmeasure 0.020619
+accuracy 0.572727, precision 1.000000, recall 0.020833, fmeasure 0.040816

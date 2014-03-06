@@ -1,0 +1,85 @@
+Multinomial likelihood
+For threshold 0.001
+accuracy 0.968326, precision 0.950000, recall 0.979381, fmeasure 0.964467
+accuracy 0.986301, precision 0.979381, recall 0.989583, fmeasure 0.984456
+accuracy 0.959091, precision 0.939394, recall 0.968750, fmeasure 0.953846
+accuracy 0.958904, precision 0.957895, recall 0.947917, fmeasure 0.952880
+accuracy 0.968182, precision 0.949495, recall 0.979167, fmeasure 0.964103
+For threshold 0.01
+accuracy 0.970588, precision 0.954774, recall 0.979381, fmeasure 0.966921
+accuracy 0.986301, precision 0.979381, recall 0.989583, fmeasure 0.984456
+accuracy 0.961364, precision 0.948718, recall 0.963542, fmeasure 0.956072
+accuracy 0.949772, precision 0.967033, recall 0.916667, fmeasure 0.941176
+accuracy 0.972727, precision 0.959184, recall 0.979167, fmeasure 0.969072
+For threshold 0.02
+accuracy 0.971342, precision 0.956376, recall 0.979381, fmeasure 0.967742
+accuracy 0.986301, precision 0.979381, recall 0.989583, fmeasure 0.984456
+accuracy 0.960606, precision 0.954861, recall 0.954861, fmeasure 0.954861
+accuracy 0.937595, precision 0.969582, recall 0.885417, fmeasure 0.925590
+accuracy 0.972727, precision 0.965517, recall 0.972222, fmeasure 0.968858
+For threshold 0.05
+accuracy 0.959276, precision 0.960733, recall 0.945876, fmeasure 0.953247
+accuracy 0.976027, precision 0.981432, recall 0.963542, fmeasure 0.972405
+accuracy 0.954545, precision 0.962366, recall 0.932292, fmeasure 0.947090
+accuracy 0.921233, precision 0.975831, recall 0.841146, fmeasure 0.903497
+accuracy 0.960227, precision 0.972900, recall 0.934896, fmeasure 0.953519
+For threshold 0.08
+accuracy 0.940271, precision 0.966592, recall 0.894845, fmeasure 0.929336
+accuracy 0.954338, precision 0.982063, recall 0.912500, fmeasure 0.946004
+accuracy 0.943636, precision 0.968610, recall 0.900000, fmeasure 0.933045
+accuracy 0.902283, precision 0.979434, recall 0.793750, fmeasure 0.876870
+accuracy 0.934545, precision 0.976636, recall 0.870833, fmeasure 0.920705
+For threshold 0.1
+accuracy 0.914781, precision 0.969940, recall 0.831615, fmeasure 0.895467
+accuracy 0.929224, precision 0.982036, recall 0.854167, fmeasure 0.913649
+accuracy 0.925000, precision 0.972277, recall 0.852431, fmeasure 0.908418
+accuracy 0.880518, precision 0.981609, recall 0.741319, fmeasure 0.844708
+accuracy 0.907576, precision 0.978903, recall 0.805556, fmeasure 0.883810
+For threshold 0.15
+accuracy 0.875889, precision 0.970986, recall 0.739323, fmeasure 0.839465
+accuracy 0.891063, precision 0.980952, recall 0.766369, fmeasure 0.860485
+accuracy 0.892208, precision 0.973783, recall 0.773810, fmeasure 0.862355
+accuracy 0.848010, precision 0.982418, recall 0.665179, fmeasure 0.793256
+accuracy 0.872078, precision 0.979798, recall 0.721726, fmeasure 0.831191
+For threshold 0.2
+accuracy 0.838801, precision 0.971209, recall 0.652062, fmeasure 0.780262
+accuracy 0.855023, precision 0.981273, recall 0.682292, fmeasure 0.804916
+accuracy 0.857955, precision 0.974359, recall 0.692708, fmeasure 0.809741
+accuracy 0.816781, precision 0.982721, recall 0.592448, fmeasure 0.739236
+accuracy 0.833523, precision 0.979798, recall 0.631510, fmeasure 0.768013
+For threshold 0.25
+accuracy 0.808949, precision 0.971319, recall 0.581901, fmeasure 0.727794
+accuracy 0.823440, precision 0.981343, recall 0.608796, fmeasure 0.751429
+accuracy 0.826263, precision 0.974453, recall 0.618056, fmeasure 0.756374
+accuracy 0.788940, precision 0.982759, recall 0.527778, fmeasure 0.686747
+accuracy 0.803535, precision 0.979798, recall 0.561343, fmeasure 0.713760
+For threshold 0.3
+accuracy 0.784615, precision 0.971374, recall 0.524742, fmeasure 0.681392
+accuracy 0.797717, precision 0.981378, recall 0.548958, fmeasure 0.704075
+accuracy 0.800909, precision 0.974545, recall 0.558333, fmeasure 0.709934
+accuracy 0.766667, precision 0.982796, recall 0.476042, fmeasure 0.641404
+accuracy 0.779545, precision 0.979798, recall 0.505208, fmeasure 0.666667
+For threshold 0.35
+accuracy 0.764295, precision 0.971374, recall 0.477038, fmeasure 0.639849
+accuracy 0.776256, precision 0.981378, recall 0.499053, fmeasure 0.661645
+accuracy 0.780165, precision 0.974638, recall 0.509470, fmeasure 0.669154
+accuracy 0.748443, precision 0.982833, recall 0.433712, fmeasure 0.601840
+accuracy 0.759917, precision 0.979798, recall 0.459280, fmeasure 0.625403
+For threshold 0.4
+accuracy 0.747360, precision 0.971374, recall 0.437285, fmeasure 0.603081
+accuracy 0.758371, precision 0.981378, recall 0.457465, fmeasure 0.624038
+accuracy 0.762121, precision 0.974638, recall 0.467014, fmeasure 0.631455
+accuracy 0.732877, precision 0.982833, recall 0.397569, fmeasure 0.566131
+accuracy 0.743561, precision 0.979798, recall 0.421007, fmeasure 0.588950
+For threshold 0.45
+accuracy 0.733032, precision 0.971374, recall 0.403648, fmeasure 0.570308
+accuracy 0.743238, precision 0.981378, recall 0.422276, fmeasure 0.590476
+accuracy 0.746853, precision 0.974638, recall 0.431090, fmeasure 0.597778
+accuracy 0.719705, precision 0.982833, recall 0.366987, fmeasure 0.534422
+accuracy 0.729720, precision 0.979798, recall 0.388622, fmeasure 0.556512
+For threshold 0.5
+accuracy 0.720750, precision 0.971374, recall 0.374816, fmeasure 0.540914
+accuracy 0.730267, precision 0.981378, recall 0.392113, fmeasure 0.560340
+accuracy 0.733766, precision 0.974638, recall 0.400298, fmeasure 0.567511
+accuracy 0.708415, precision 0.982833, recall 0.340774, fmeasure 0.506077
+accuracy 0.717857, precision 0.979798, recall 0.360863, fmeasure 0.527461
