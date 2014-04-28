@@ -1,0 +1,31 @@
+DIRECTED
+
+RANDOM VARIABLES - Burglary(B), Earthquake(E), JohnCalls(J), MaryCalls(M), Alarm(A)
+
+ALL RANDOM VARIABLES ARE BINARY (t or f).
+
+
+CONDITIONAL PROBABILITY TABLES
+
+P(B = t) 
+0.001
+
+P(E = t)
+0.002
+
+P(J = t | A)
+A   P(J = t)
+t   0.9
+f   0.05
+
+P(M = t | A)
+A   P(M = t)
+t   0.7
+f   0.01
+
+P(A = t | B, E)
+B   E 	P(A = t)
+t   t	0.95 	
+t   f	0.94
+f   t	0.29
+f   f	0.001

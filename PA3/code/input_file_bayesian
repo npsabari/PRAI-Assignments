@@ -1,0 +1,31 @@
+DIRECTED
+
+RANDOM VARIABLES - Difficulty(D), Intelligence(I), Grade(G), SAT(S), Letter(L)
+
+ALL RANDOM VARIABLES ARE BINARY (t or f).
+
+
+CONDITIONAL PROBABILITY TABLES
+
+P(D = t) 
+0.6
+
+P(I = t)
+0.7
+
+P(L = t | G)
+G   P(L = t)
+t   0.9
+f   0.2
+
+P(S = t | I)
+I   P(S = t)
+t   0.95
+f   0.3
+
+P(G = t | D, I)
+D   I 	P(G = t)
+t   t	0.3 	
+t   f	0.05
+f   t	0.9
+f   f	0.5

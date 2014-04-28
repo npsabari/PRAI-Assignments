@@ -1,0 +1,26 @@
+DIRECTED
+
+RANDOM VARIABLES - A, B, C, D
+
+ALL RANDOM VARIABLES ARE BINARY (t or f).
+
+
+CONDITIONAL PROBABILITY TABLES
+
+P(A = t)
+0.1
+
+P(B = t | A)
+A   P(B = t)
+t   0.1   
+f   0.9
+
+P(C = t | B)
+B   P(C = t)
+t   0.4
+f   0.2
+
+P(D = t | C)
+C   P(D = t)
+t   0.3
+f   0.8

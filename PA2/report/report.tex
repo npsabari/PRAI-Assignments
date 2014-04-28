@@ -1,0 +1,139 @@
+\documentclass[a4paper,10pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{array, xcolor, booktabs}
+\usepackage{tikz, listings, longtable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+%
+% this makes list spacing much better.
+%
+\newenvironment{my_itemize}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{
+\end{itemize}}
+
+\newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+\newcommand*{\myalign}[2]{\multicolumn{1}{#1}{#2}}
+\newcommand\Colorhref[3][blue]{\href{#2}{\small\color{#1}#3}}
+\newcommand{\BigO}[1]{\ensuremath{\operatorname{O}\bigl(#1\bigr)}}
+
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    %\ifnum \c@secnumdepth >\m@ne
+    %    \huge\bfseries \@chapapp\space \thechapter
+    %    \par\nobreak
+    %    \vskip 20\p@
+    %\fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 15\p@
+  }}
+  \makeatother
+
+\def\codefont{
+  \fontsize{9pt}{11pt}\selectfont}
+\definecolor{codebgcolor}{HTML}{EDEDED}
+\newenvironment{code}
+{\begin{center}
+    \begin{tikzpicture}
+      \node [fill=codebgcolor,rounded corners=5pt]
+      \bgroup
+      \bgroup\codefont
+      \begin{tabular}{l}}
+      {\end{tabular}
+      \egroup
+      \egroup;
+    \end{tikzpicture}
+ \end{center}}
+
+% Titel page
+\title{\huge{\textbf{PRAI Assignment - 2}}}
+\author{\\[0.5cm] Sabarinath N P \emph{(CS10B020)}
+	\\[0.5cm] Department of Computer Science and Engineering \\[0.2cm]
+	IIT Madras\\[1.0cm]
+}
+
+\begin{document}
+
+\renewcommand{\thesection}{1.\arabic{section}}
+
+\maketitle
+\setcounter{tocdepth}{2}
+
+\section{Results}
+For variable elimination queries, the probabilities are reported as follows,
+\\\\
+P(J)\\
+0.0521 
+\\
+0.9478
+\\\\
+P(A)\\
+0.0025 
+\\
+0.9974
+\\\\
+P(J, M)\\
+0.00208
+0.05005
+0.00965
+0.93821
+\\\\
+P(B/J) \\
+0.01628 
+0.00016
+0.98371
+0.99984
+\\\\
+P(E/A)\\
+0.23101 \\
+0.00142 \\
+0.76899\\
+0.99857\\\\\\
+For chain graph queries, the probabilities are reported as follows,
+\\\\
+P(A)\\
+0.1\\
+0.9\\\\
+P(B)\\
+0.82\\
+0.18\\\\
+P(C)\\
+0.364 \\
+0.636\\\\
+P(D)\\\\
+0.618 \\
+0.382\\\\
+P(A, B)\\
+0.01\\
+0.09\\
+0.81\\
+0.09\\\\
+P(C, D)\\
+0.1092 \\
+0.2548\\
+0.5088\\
+0.1272\\\\
+P(A, D)\\
+0.069\\
+0.031 \\
+0.549\\
+0.351\\\\
+P(A/D)\\
+0.1116\\
+0.0811 \\
+0.8883\\
+0.9188
+
+
+
+\end{document}

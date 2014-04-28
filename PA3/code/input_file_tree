@@ -1,0 +1,26 @@
+DIRECTED
+
+RANDOM VARIABLES - Burglar(B), Alarm(A), Watson(W), Gibbon(G)
+
+ALL RANDOM VARIABLES ARE BINARY (t or f).
+
+
+CONDITIONAL PROBABILITY TABLES
+
+P(B = t)
+0.01
+
+P(A = t | B)
+B   P(A = t)
+t   0.99
+f   0.05
+
+P(W = t | A)
+A   P(W = t)
+t   0.9
+f   0.5
+
+P(G = t | A)
+A   P(G = t)
+t   0.7
+f   0.2

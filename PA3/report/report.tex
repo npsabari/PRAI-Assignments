@@ -1,0 +1,132 @@
+\documentclass[a4paper,10pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{array, xcolor, booktabs}
+\usepackage{tikz, listings, longtable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+%
+% this makes list spacing much better.
+%
+\newenvironment{my_itemize}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{
+\end{itemize}}
+
+\newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+\newcommand*{\myalign}[2]{\multicolumn{1}{#1}{#2}}
+\newcommand\Colorhref[3][blue]{\href{#2}{\small\color{#1}#3}}
+\newcommand{\BigO}[1]{\ensuremath{\operatorname{O}\bigl(#1\bigr)}}
+
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    %\ifnum \c@secnumdepth >\m@ne
+    %    \huge\bfseries \@chapapp\space \thechapter
+    %    \par\nobreak
+    %    \vskip 20\p@
+    %\fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 15\p@
+  }}
+  \makeatother
+
+\def\codefont{
+  \fontsize{9pt}{11pt}\selectfont}
+\definecolor{codebgcolor}{HTML}{EDEDED}
+\newenvironment{code}
+{\begin{center}
+    \begin{tikzpicture}
+      \node [fill=codebgcolor,rounded corners=5pt]
+      \bgroup
+      \bgroup\codefont
+      \begin{tabular}{l}}
+      {\end{tabular}
+      \egroup
+      \egroup;
+    \end{tikzpicture}
+ \end{center}}
+
+% Titel page
+\title{\huge{\textbf{PRAI Assignment - 3}}}
+\author{\\[0.5cm] Sabarinath N P \emph{(CS10B020)}
+	\\[0.5cm] Department of Computer Science and Engineering \\[0.2cm]
+	IIT Madras\\[1.0cm]
+}
+
+\begin{document}
+
+\renewcommand{\thesection}{1.\arabic{section}}
+
+\maketitle
+\setcounter{tocdepth}{2}
+
+\section{Results}
+For tree queries, the probabilities are reported as follows,
+\\\\
+P(A)\\
+0.0594
+\\
+0.9406
+\\\\
+P(W)\\
+0.52376
+\\
+0.47624
+\\\\
+P(G)\\
+0.2297
+\\
+0.7703
+\\\\
+P(A, B)\\
+0.0099\\
+0.0495\\
+0.0001\\
+0.9405
+\\\\
+P(W, G)\\
+0.1315\\
+0.3933\\
+0.0983\\
+0.3781\\
+\\\\
+P(G/B) \\
+0.6950\\
+0.225\\
+0.305\\
+0.775\\
+\\\\
+For bayesian network queries, the probabilities are reported as follows,
+\\\\
+P(G)\\
+0.447\\
+0.553\\\\
+P(S)\\
+0.755\\
+0.245\\\\
+P(L)\\
+0.5129 \\
+0.4871\\\\
+P(G, S)\\
+0.3798\\
+0.0672\\
+0.3752\\
+0.1778\\\\
+P(L/I)\\
+0.0.578\\
+0.0.361 \\
+0.422 \\
+0.639
+
+
+
+\end{document}
